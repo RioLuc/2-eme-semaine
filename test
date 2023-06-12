@@ -1,0 +1,26 @@
+import { useState, useEffect } from "react";
+
+interface Props {
+  text: string | null;
+}
+
+export function TextVanish({ text }: Props) {
+  if (!text) {
+    return null;
+  }
+
+  const [textToRender, setTextToRender] = useState<string | null>(text);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setTextToRender(null), 5000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return <span>{textToRender}</span>;
+}
+
+type RestrictedInt = 5 | 6 | 7 | 8 | 9;
+
+export function Agree({ onAgree }: Props) {
+  return <button onClick={() => onAgree()}>Click to agree</button>;
+}
